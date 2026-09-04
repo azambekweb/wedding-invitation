@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="tg">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+<meta name="theme-color" content="#b48a7a">
+<title>Рухшона & Беҳрӯз — Таклифномаи тӯй</title>
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI","Poppins",system-ui,sans-serif}
+body{background:#fcf7f2;color:#3d2c23;line-height:1.6;padding:12px;min-height:100vh}
+.app{max-width:1100px;width:100%;margin:auto}
+.hidden{display:none!important}
+.card{background:#fff;border:1px solid #f0e4dc;border-radius:28px;padding:28px 24px;box-shadow:0 12px 48px rgba(0,0,0,.06)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 18px;border:0;border-radius:50px;font-weight:600;font-size:.92rem;background:#f0e4d8;color:#3d2c23;cursor:pointer;text-decoration:none;transition:.25s}
+.btn:hover{transform:translateY(-2px)}
+.btn-primary{background:#b48a7a;color:#fff}.btn-success{background:#25d366;color:#fff}.btn-telegram{background:#0088cc;color:#fff}.btn-outline{background:transparent;border:2px solid #b48a7a;color:#b48a7a}.btn-sm{padding:7px 13px;font-size:.8rem}
+.hero{text-align:center;padding:15px 0}.flower{font-size:2rem;opacity:.65}
+.names{font-size:2.4rem;font-weight:300;letter-spacing:3px;color:#4f382a;margin:8px 0}
+.names span{color:#b48a7a;font-weight:600}
+.greeting{font-size:1.4rem;font-weight:300;margin:6px}.greeting strong{color:#7a5b48}
+.divider{width:80px;height:3px;background:#dccbc1;margin:16px auto;border-radius:10px}
+.invite-text{max-width:650px;margin:12px auto;font-size:1.05rem;color:#5a4a3d;font-style:italic}
+.event{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:720px;margin:20px auto;background:#f9f3ee;padding:18px;border-radius:32px}
+.event .item{text-align:center}.label{display:block;font-size:.68rem;text-transform:uppercase;letter-spacing:1px;color:#9b8478}.value{font-weight:600}
+.countdown{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:650px;margin:18px auto}
+.timebox{background:#f4ede8;border-radius:20px;padding:12px 5px;text-align:center}.timebox b{display:block;font-size:1.7rem;font-weight:400;color:#b48a7a}.timebox small{color:#8e7769}
+.music{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;background:#f4ede8;padding:9px 16px;border-radius:50px;margin:15px auto;max-width:430px}
+.music button{border:0;background:none;font-size:1.4rem;cursor:pointer}.music input{width:90px;accent-color:#b48a7a}
+.share{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.admin-toggle{text-align:center;margin:18px 0}
+.admin{background:#fcf8f5;border:1px solid #efe4dc}
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:18px 0}
+.stat{background:#fff;border:1px solid #efe4dc;border-radius:18px;padding:10px;text-align:center}.stat b{display:block;font-size:1.6rem;color:#b48a7a;font-weight:400}.stat small{font-size:.68rem;color:#9b8478}
+.form{display:flex;flex-wrap:wrap;gap:10px;background:#fff;padding:14px;border-radius:24px;border:1px solid #efe4dc}
+.form input,.form select,.search{flex:1 1 150px;padding:11px 14px;border:1px solid #e6d9d0;border-radius:40px;background:#fcf9f7;outline:0}
+.filters{display:flex;flex-wrap:wrap;gap:7px;margin:15px 0}.filters .active{background:#b48a7a;color:#fff}
+.list{display:flex;flex-direction:column;gap:9px;max-height:520px;overflow:auto}
+.guest{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;background:#fff;border:1px solid #efe4dc;padding:11px 15px;border-radius:22px}
+.info{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.group{font-size:.72rem;background:#efe4dc;padding:2px 10px;border-radius:30px}.actions{display:flex;gap:6px;flex-wrap:wrap}
+.actions .btn{padding:5px 10px;font-size:.72rem}
+.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);background:#3d2c23;color:#fff;padding:11px 23px;border-radius:50px;opacity:0;pointer-events:none;transition:.3s;z-index:99}.toast.show{opacity:1}
+.status{text-align:center;font-size:.8rem;color:#9b8478;margin-top:8px}
+@media(max-width:700px){.event{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(3,1fr)}.names{font-size:1.8rem}.card{padding:20px 14px}}
+@media(max-width:420px){.event{grid-template-columns:1fr}.countdown{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}}
+@keyframes up{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:none}}
+.card{animation:up .7s ease}
+</style>
+</head>
+<body>
+<div class="app">
+<div id="toast" class="toast">✅ Омода</div>
+
+<section class="card">
+<div class="hero">
+<div class="flower">🌿</div>
+<div class="names"><span>Рухшона</span> &amp; <span>Беҳрӯз</span></div>
+<div class="greeting" id="greeting"><strong>Меҳмони азиз!</strong></div>
+<div class="divider"></div>
+<p class="invite-text">Бо изни Худованд ва баракати падару модар, шуморо ба ҷашни тӯйи мо самимона даъват менамоем. Интизори шумо ҳастем! ❤️</p>
+
+<div class="event">
+<div class="item"><span class="label">Сана</span><span class="value">15.08.2026</span></div>
+<div class="item"><span class="label">Вақт</span><span class="value">18:30</span></div>
+<div class="item"><span class="label">Ҷой</span><span class="value">Душанбе</span></div>
+<div class="item"><span class="label">Суроға</span><span class="value">кӯчаи Исмоили Сомонӣ 12</span></div>
+</div>
+
+<div id="countdown" class="countdown">
+<div class="timebox"><b id="days">0</b><small>Рӯз</small></div>
+<div class="timebox"><b id="hours">0</b><small>Соат</small></div>
+<div class="timebox"><b id="minutes">0</b><small>Дақиқа</small></div>
+<div class="timebox"><b id="seconds">0</b><small>Сония</small></div>
+</div>
+
+<a class="btn btn-primary" target="_blank" href="https://maps.google.com/?q=Душанбе%20кӯчаи%20Исмоили%20Сомонӣ%2012">🗺 Нишон додани роҳ</a>
+
+<div class="music">
+<span>🎵 Мусиқӣ</span>
+<button id="playBtn">▶️</button><button id="pauseBtn">⏸</button>
+<input id="volume" type="range" min="0" max="1" step=".1" value=".5">
+<span id="vol">50%</span>
+</div>
+<audio id="music" loop>
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="share">
+<button id="tgShare" class="btn btn-telegram">✈️ Ба Telegram фиристодан</button>
+<button id="waShare" class="btn btn-success">📱 Ба WhatsApp фиристодан</button>
+</div>
+<div id="tgStatus" class="status"></div>
+</div>
+</section>
+
+<div class="admin-toggle"><button id="adminToggle" class="btn btn-outline">🔐 Панели идоракунӣ</button></div>
+
+<section id="admin" class="card admin hidden">
+<h3 style="text-align:center">📋 Панели идоракунии меҳмонон</h3>
+<div class="stats">
+<div class="stat"><b id="all">0</b><small>Ҳама</small></div>
+<div class="stat"><b id="khesh">0</b><small>Хешу табор</small></div>
+<div class="stat"><b id="jura">0</b><small>Ҷӯраҳо</small></div>
+<div class="stat"><b id="muallim">0</b><small>Муаллимон</small></div>
+<div class="stat"><b id="hamkurs">0</b><small>Ҳамкурсҳо</small></div>
+<div class="stat"><b id="digar">0</b><small>Дигар</small></div>
+</div>
+
+<form id="form" class="form">
+<input id="name" placeholder="Номи меҳмон" required>
+<select id="group">
+<option>Хешу табор</option><option>Ҷӯраҳо</option><option>Муаллимон</option><option>Ҳамкурсҳо</option><option>Дигар</option>
+</select>
+<button class="btn btn-primary">➕ Илова</button>
+</form>
+
+<div class="filters">
+<button class="btn btn-sm active" data-filter="all">Ҳама</button>
+<button class="btn btn-sm" data-filter="Хешу табор">🏠 Хешу табор</button>
+<button class="btn btn-sm" data-filter="Ҷӯраҳо">🤝 Ҷӯраҳо</button>
+<button class="btn btn-sm" data-filter="Муаллимон">📚 Муаллимон</button>
+<button class="btn btn-sm" data-filter="Ҳамкурсҳо">🎓 Ҳамкурсҳо</button>
+<button class="btn btn-sm" data-filter="Дигар">🔹 Дигар</button>
+<input id="search" class="search" placeholder="🔍 Ҷустуҷӯ...">
+</div>
+<div id="list" class="list"></div>
+<p class="status">Ҷамъ: <span id="count">0</span> нафар</p>
+</section>
+</div>
+
+<script>
+(()=>{"use strict";
+const KEY="wedding_guests_v2";
+const defaults=[
+{id:"1",name:"Али",group:"Ҷӯраҳо"},{id:"2",name:"Зарина",group:"Хешу табор"},
+{id:"3",name:"Устод Раҳим",group:"Муаллимон"},{id:"4",name:"Фарзона",group:"Ҳамкурсҳо"},
+{id:"5",name:"Бахтиёр",group:"Хешу табор"},{id:"6",name:"Муҳсин",group:"Дигар"},
+{id:"7",name:"Гулсара",group:"Хешу табор"},{id:"8",name:"Ҷамшед",group:"Ҷӯраҳо"}];
+let guests=JSON.parse(localStorage.getItem(KEY)||"null")||defaults;
+let filter="all",query="";
+const $=id=>document.getElementById(id);
+const toast=msg=>{ $("toast").textContent=msg; $("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2200) };
+const save=()=>localStorage.setItem(KEY,JSON.stringify(guests));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));
+function baseUrl(){return location.href.split("?")[0].split("#")[0]}
+function linkFor(g){return baseUrl()+"?guest="+encodeURIComponent(g.name)}
+function render(){
+let arr=guests.filter(g=>(filter==="all"||g.group===filter)&&g.name.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>a.name.localeCompare(b.name,"tg"));
+$("list").innerHTML=arr.length?arr.map(g=>{
+let l=linkFor(g),w=encodeURIComponent(`Салом ${g.name} 🌹\nШуморо ба тӯйи мо самимона даъват менамоем.\n${l}`);
+let t=encodeURIComponent(`Таклифномаи шахсии ${g.name} 🌹`);
+return `<div class="guest"><div class="info"><b>${esc(g.name)}</b><span class="group">${esc(g.group)}</span></div><div class="actions">
+<a class="btn btn-success" target="_blank" href="https://wa.me/?text=${w}">WhatsApp</a>
+<a class="btn btn-telegram" target="_blank" href="https://t.me/share/url?url=${encodeURIComponent(l)}&text=${t}">Telegram</a>
+<button class="btn btn-outline copy" data-link="${esc(l)}">🔗 Copy</button>
+<button class="btn btn-sm" data-del="${esc(g.id)}">🗑</button></div></div>`}).join(""):`<div class="status">⚠️ Меҳмоне пайдо нашуд</div>`;
+$("count").textContent=arr.length;
+["all","khesh","jura","muallim","hamkurs","digar"].forEach(x=>$(x).textContent=0);
+$("all").textContent=guests.length;
+$("khesh").textContent=guests.filter(g=>g.group==="Хешу табор").length;
+$("jura").textContent=guests.filter(g=>g.group==="Ҷӯраҳо").length;
+$("muallim").textContent=guests.filter(g=>g.group==="Муаллимон").length;
+$("hamkurs").textContent=guests.filter(g=>g.group==="Ҳамкурсҳо").length;
+$("digar").textContent=guests.filter(g=>g.group==="Дигар").length;
+document.querySelectorAll(".copy").forEach(b=>b.onclick=()=>navigator.clipboard?.writeText(b.dataset.link).then(()=>toast("✅ Линк нусхабардорӣ шуд")).catch(()=>{let x=document.createElement("textarea");x.value=b.dataset.link;document.body.appendChild(x);x.select();document.execCommand("copy");x.remove();toast("✅ Линк нусхабардорӣ шуд")}));
+document.querySelectorAll("[data-del]").forEach(b=>b.onclick=()=>{if(confirm("Ин меҳмонро нест мекунед?")){guests=guests.filter(g=>g.id!==b.dataset.del);save();render();toast("🗑 Меҳмон нест шуд")}});
+}
+function greeting(){
+let n=new URLSearchParams(location.search).get("guest");
+$("greeting").innerHTML=n?`<strong>${esc(n.trim())}ҷони азиз!</strong>`:"<strong>Меҳмони азиз!</strong>";
+}
+$("adminToggle").onclick=()=>$("admin").classList.toggle("hidden");
+$("form").onsubmit=e=>{e.preventDefault();let n=$("name").value.trim();if(!n)return;if(guests.some(g=>g.name.toLowerCase()===n.toLowerCase()))return toast("⚠️ Ин ном аллакай вуҷуд дорад");guests.push({id:Date.now().toString(),name:n,group:$("group").value});save();$("name").value="";render();toast("✅ Меҳмон илова шуд")};
+document.querySelectorAll("[data-filter]").forEach(b=>b.onclick=()=>{document.querySelectorAll("[data-filter]").forEach(x=>x.classList.remove("active"));b.classList.add("active");filter=b.dataset.filter;render()});
+$("search").oninput=e=>{query=e.target.value.trim();render()};
+
+const audio=$("music");audio.volume=.5;
+$("playBtn").onclick=()=>audio.play().catch(()=>toast("⚠️ Барои мусиқӣ тугмаи Play-ро пахш кунед"));
+$("pauseBtn").onclick=()=>audio.pause();
+$("volume").oninput=e=>{audio.volume=+e.target.value;$("vol").textContent=Math.round(audio.volume*100)+"%"};
+
+const wedding=new Date("2026-08-15T18:30:00+05:00").getTime();
+function countdown(){let d=wedding-Date.now();if(d<=0){$("countdown").innerHTML='<div class="timebox" style="grid-column:1/-1"><b>🎉 Тӯй оғоз шуд!</b><small>Хуш омадед!</small></div>';return}let s=Math.floor(d/1000);$("days").textContent=Math.floor(s/86400);s%=86400;$("hours").textContent=Math.floor(s/3600);s%=3600;$("minutes").textContent=Math.floor(s/60);$("seconds").textContent=s%60}
+setInterval(countdown,1000);countdown();
+
+function shareLinks(){
+let n=new URLSearchParams(location.search).get("guest")||"Меҳмони азиз";
+let l=location.href;
+$("waShare").onclick=()=>window.open("https://wa.me/?text="+encodeURIComponent(`Салом ${n} 🌹\nТаклифномаи тӯй:\n${l}`),"_blank");
+$("tgShare").onclick=()=>window.open("https://t.me/share/url?url="+encodeURIComponent(l)+"&text="+encodeURIComponent("💍 Таклифномаи тӯйи Рухшона ва Беҳрӯз"),"_blank");
+}
+function telegramInit(){
+if(window.Telegram?.WebApp){
+let tg=window.Telegram.WebApp;tg.ready();tg.expand();
+try{tg.setHeaderColor("#b48a7a");tg.setBackgroundColor("#fcf7f2")}catch(e){}
+let u=tg.initDataUnsafe?.user;
+if(u && !new URLSearchParams(location.search).get("guest"))$("greeting").innerHTML=`<strong>${esc(u.first_name||"Меҳмони азиз")}ҷони азиз!</strong>`;
+$("tgStatus").textContent="✈️ Сайт дар Telegram Mini App фаъол аст";
+}}
+greeting();shareLinks();render();telegramInit();
+})();
+</script>
+</body>
+</html>
